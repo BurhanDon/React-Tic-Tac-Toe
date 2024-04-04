@@ -20,7 +20,7 @@ function GameBoard({ onSelectSquare }) {
 
   return (
     <ol id="game-board">
-      {/* {gameBoard.map((row, rowIndex) => (
+      {gameBoard.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
@@ -30,7 +30,7 @@ function GameBoard({ onSelectSquare }) {
             ))}
           </ol>
         </li>
-      ))} */}
+      ))}
     </ol>
   );
 }
