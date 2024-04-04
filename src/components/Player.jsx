@@ -13,11 +13,11 @@ function Player({ initialName, symbol, isActive }) {
     setPlayerName(event.target.value);
   }
 
-  function handleKeyPress(event) {
-    if (event.key === "Enter") {
-      setIsEditing(false);
-    }
-  }
+  // function handleKeyPress(event) {
+  //   if (event.key === "Enter") {
+  //     setIsEditing(false);
+  //   }
+  // }
 
   let editablePlayerName = <span className="player-name">{playerName}</span>;
 
