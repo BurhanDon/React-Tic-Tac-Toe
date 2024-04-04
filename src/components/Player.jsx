@@ -9,9 +9,9 @@ function Player({ initialName, symbol, isActive }) {
     setIsEditing((editing) => !editing);
   }
 
-  function handleChange(event) {
-    setPlayerName(event.target.value);
-  }
+  // function handleChange(event) {
+  //   setPlayerName(event.target.value);
+  // }
 
   // function handleKeyPress(event) {
   //   if (event.key === "Enter") {
