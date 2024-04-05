@@ -1,12 +1,15 @@
 import { useState } from "react";
 
-function Player({ initialName, symbol, isActive }) {
+function Player({ initialName, symbol, isActive, onChangeName }) {
   const [playerName, setPlayerName] = useState(initialName);
 
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEditClick() {
     setIsEditing((editing) => !editing);
+    if (!isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
@@ -16,6 +19,9 @@ function Player({ initialName, symbol, isActive }) {
   function handleKeyPress(event) {
     if (event.key === "Enter") {
       setIsEditing(false);
+      if (event.key === "Enter") {
+        onChangeName(symbol, playerName);
+      }
     }
   }
 
@@ -30,6 +36,7 @@ function Player({ initialName, symbol, isActive }) {
         onChange={handleChange}
         required
         onKeyDown={handleKeyPress}
+        onBlur={() => onChangeName(symbol, playerName)}
       />
     );
   }

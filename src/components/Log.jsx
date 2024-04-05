@@ -1,11 +1,11 @@
 import React from "react";
 
-function Log({ turns }) {
+function Log({ turns ,appear}) {
   return (
     <ol id="log">
       {turns.map((turn) => (
         <li key={`${turn.square.row} ${turn.square.col}`}>
-          {turn.player} selected {turn.square.col} , {turn.square.row}
+          {appear[turn.player]} selected {turn.square.col} , {turn.square.row}
         </li>
       ))}
     </ol>

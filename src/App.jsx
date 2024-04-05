@@ -21,8 +21,12 @@ function deriveActivePlayer(gameTurns) {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  // const [activePlayer, setActivePlayer] = useState("X");
+  const [players, setPlayers] = useState({
+    X: "Player 1",
+    0: "Player 2",
+  });
   const activePlayer = deriveActivePlayer(gameTurns);
+  // const [activePlayer, setActivePlayer] = useState("X");
   function handleSelectSquare(rowIndex, colIndex) {
     // setActivePlayer((curActivePlayer) => (curActivePlayer === "X" ? "0" : "X"));
     setGameTurns((prevTurns) => {
@@ -35,7 +39,7 @@ function App() {
     });
   }
 
-  let gameBoard = initialGameBoard;
+  let gameBoard = [...initialGameBoard.map((array) => [...array])];
   let winner;
 
   const hasDraw = gameTurns.length === 9 && !winner;
@@ -59,8 +63,18 @@ function App() {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      winner = firstSquareSymbol;
+      winner = players[firstSquareSymbol];
     }
+  }
+
+  function handleRestart() {
+    setGameTurns([]);
+  }
+
+  function handlePlayerNameChange(symbol, newName) {
+    setPlayers(prevPlayers => {
+      return { ...prevPlayers, [symbol]: newName };
+    });
   }
 
   return (
@@ -71,17 +85,21 @@ function App() {
             initialName={"Player 1"}
             symbol={"X"}
             isActive={activePlayer === "X"}
+            onChangeName={handlePlayerNameChange}
           />
           <Player
             initialName={"Player 2"}
             symbol={"0"}
             isActive={activePlayer === "0"}
+            onChangeName={handlePlayerNameChange}
           />
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner} />}
+        {(winner || hasDraw) && (
+          <GameOver onRestart={handleRestart} winner={winner} />
+        )}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
-      <Log turns={gameTurns} />
+      <Log turns={gameTurns} appear={players} />
     </main>
   );
 }
