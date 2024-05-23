@@ -47,6 +47,17 @@ h1 {
   color: #3f3b00;
 }
 
+#app-p,
+a {
+  text-align: center;
+  text-decoration: none;
+  color: rgba(49, 47, 31, 0.5);
+}
+
+#app-p a:hover {
+  color: rgba(49, 47, 31, 1);
+}
+
 #game-container {
   max-width: 45rem;
   margin: 3rem auto;
@@ -126,10 +137,21 @@ h1 {
   width: 10rem;
   border: none;
   padding: 0.5rem;
-  animation: pulse-text 2s infinite;
   background-color: #e1dec7;
   text-align: center;
-  text-transform: uppercase;
+  animation: pulse-text 2s infinite alternate;
+  animation-fill-mode: both !important;
+  color: #ff0000; /* Initial text color (red) */
+}
+
+/* Define keyframes for text color animation */
+@keyframes pulse-text {
+  50% {
+    color: #22ff00; /* Text color stays green during animation */
+  }
+  100% {
+    color: #f8ca31; /* Text color changes to yellow at the end of animation */
+  }
 }
 
 .player-symbol {

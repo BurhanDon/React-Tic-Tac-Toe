@@ -135,6 +135,13 @@ function App() {
       </div>
 
       <Log turns={gameTurns} appear={players} />
+      <p id="app-p">
+        Developed by
+        <a target="_blank" href="https://www.linkedin.com/in/burhan-siraj/">
+          {" "}
+          Burhan Uddin
+        </a>
+      </p>
     </main>
   );
 }
